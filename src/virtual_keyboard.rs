@@ -355,9 +355,8 @@ impl<H: KeyboardHardware> VirtualKeyboard<H> {
                 self.hardware.press_enter()?;
             }
         } else {
-            // Voice-enter disabled: always press ENTER at end-of-turn
-            debug!("Voice-enter disabled; pressing ENTER at end-of-turn");
-            self.hardware.press_enter()?;
+            // Voice-enter disabled: never inject ENTER on end-of-turn.
+            debug!("Voice-enter disabled; not pressing ENTER at end-of-turn");
         }
         
         // Clear the current text tracking
@@ -875,5 +874,22 @@ mod tests {
         kb.update_transcript("Hello World").unwrap();
         assert_eq!(kb.current_text, "Hello World");
         assert_eq!(kb.hardware.typed_chars, ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']);
+    }
+
+    #[test]
+    fn test_voice_enter_disabled_never_presses_enter() {
+        let mut kb = VirtualKeyboard::new(MockKeyboardHardware::new());
+        kb.set_voice_enter_enabled(false);
+
+        kb.update_transcript("hello enter").unwrap();
+        kb.finalize_transcript().unwrap();
+
+        assert!(!kb.hardware.enter_pressed);
+        // With voice-enter disabled, the transcript should be left as typed.
+        assert_eq!(
+            kb.hardware.typed_chars,
+            ['h', 'e', 'l', 'l', 'o', ' ', 'e', 'n', 't', 'e', 'r']
+        );
+        assert_eq!(kb.hardware.backspace_count, 0);
     }
 }
