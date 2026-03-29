@@ -11,8 +11,8 @@ This repo is a Rust voice keyboard for Linux that streams audio to Deepgram Flux
 ## Build / Test / Verify
 - Install: `cargo build`
 - Dev: `./run.sh`
-- Test: `cargo test`
-- Verify: `cargo test`
+- Test: `cargo test virtual_keyboard::tests`
+- Verify: `cargo test virtual_keyboard::tests`
 
 ## Repo Map
 - `src/` — STT client, transcript handling, and virtual keyboard logic.
@@ -24,10 +24,10 @@ This repo is a Rust voice keyboard for Linux that streams audio to Deepgram Flux
 - Keyboard correctness and Linux input-device permissions matter as much as STT correctness.
 - The live Flux tests are not hermetic; keep local-unit and service-auth failures mentally separate.
 - README assumptions are service-specific and can drift quickly if provider/auth behavior changes.
+- Full `cargo test` currently includes live STT-client checks that can fail on missing service credentials.
 
 ## Additional References
 - `docs/architecture.md` — runtime surfaces and privilege/audio flow.
 - `docs/fileindex.md` — key files and change hotspots.
 - `docs/agent_docs/running_tests.md` — current `cargo test` expectations and caveats.
 - `README.md` — install, run, and Deepgram Flux contract notes.
-
