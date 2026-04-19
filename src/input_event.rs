@@ -199,7 +199,16 @@ pub fn char_to_keycode(c: char) -> Option<(u16, bool)> {
         'y' | 'Y' => Some((KEY_Y, c.is_uppercase())),
         'z' | 'Z' => Some((KEY_Z, c.is_uppercase())),
         // Numbers and special characters
-        '0'..='9' => Some((KEY_0 + (c as u16 - '0' as u16), false)),
+        '0' => Some((KEY_0, false)),
+        '1' => Some((KEY_1, false)),
+        '2' => Some((KEY_2, false)),
+        '3' => Some((KEY_3, false)),
+        '4' => Some((KEY_4, false)),
+        '5' => Some((KEY_5, false)),
+        '6' => Some((KEY_6, false)),
+        '7' => Some((KEY_7, false)),
+        '8' => Some((KEY_8, false)),
+        '9' => Some((KEY_9, false)),
         ' ' => Some((KEY_SPACE, false)),
         '\n' => Some((KEY_ENTER, false)),
         '\t' => Some((KEY_TAB, false)),
@@ -250,6 +259,25 @@ pub fn get_all_keycodes() -> Vec<u16> {
     }
 
     keys
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_digit_keycodes_map_to_number_row() {
+        assert_eq!(char_to_keycode('0'), Some((KEY_0, false)));
+        assert_eq!(char_to_keycode('1'), Some((KEY_1, false)));
+        assert_eq!(char_to_keycode('2'), Some((KEY_2, false)));
+        assert_eq!(char_to_keycode('3'), Some((KEY_3, false)));
+        assert_eq!(char_to_keycode('4'), Some((KEY_4, false)));
+        assert_eq!(char_to_keycode('5'), Some((KEY_5, false)));
+        assert_eq!(char_to_keycode('6'), Some((KEY_6, false)));
+        assert_eq!(char_to_keycode('7'), Some((KEY_7, false)));
+        assert_eq!(char_to_keycode('8'), Some((KEY_8, false)));
+        assert_eq!(char_to_keycode('9'), Some((KEY_9, false)));
+    }
 }
 
 // Legacy uinput_user_dev struct for old uinput interface
