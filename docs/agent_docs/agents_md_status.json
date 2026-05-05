@@ -1,0 +1,37 @@
+{
+  "agents_md_current_through_commit": "027abb1222b7ecaa592a4dc2fb3ae5070cfac168",
+  "agents_md_last_synced_at": "2026-05-05T14:06:47.289547+00:00",
+  "alias": {
+    "exists": true,
+    "is_symlink": true,
+    "path": "CLAUDE.md",
+    "resolved_target": "/home/bryan/code/stt/voice-keyboard-linux/AGENTS.md",
+    "target": "AGENTS.md"
+  },
+  "baseline": {
+    "best_practice_path": "/home/bryan/code/workflow_optimizer/.claude/skills/refresh-agents-md/references/current-best-practice.md",
+    "best_practice_sha256": "7aa2e3ff3ad89088645789917330d81e8db1ac9e6ba4db592bf510cb5c50d75d",
+    "template_path": "/home/bryan/code/workflow_optimizer/.claude/skills/refresh-agents-md/references/agents-template.md",
+    "template_sha256": "08c278e2b4e4a22acd24bf0b43db03813de078515e3efde82c8c7a0a0df30e30"
+  },
+  "canonical_path": "AGENTS.md",
+  "canonical_sha256": "4971c904fd1fb9aef96c3ac6d4cec2d0861c0e9f3792ca9ed0f535406cd15bcc",
+  "git_ignore": {
+    "status": null
+  },
+  "git_status": {
+    "alias": null,
+    "canonical": null,
+    "status": "??"
+  },
+  "managed_by": "roll-agents-md",
+  "notes": [
+    "Preserved privilege model, sudo -E runner, live STT test caveats, and transcript backspacing contract."
+  ],
+  "referenced_calibration_docs": [
+    "docs/architecture.md",
+    "docs/fileindex.md",
+    "docs/agent_docs/running_tests.md"
+  ],
+  "schema_version": 1
+}
