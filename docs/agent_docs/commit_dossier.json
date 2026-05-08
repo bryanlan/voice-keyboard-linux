@@ -1,76 +1,89 @@
 {
   "changed_paths": [
-    "AGENTS.md",
-    "CLAUDE.md",
-    "src/input_event.rs"
+    "docs/agent_docs/agents_md_status.json",
+    "docs/agent_docs/commit_dossier.json",
+    "docs/agent_docs/commit_dossier.md",
+    "docs/agent_docs/doc_status.json",
+    "docs/agent_docs/running_tests.md",
+    "docs/architecture.md",
+    "docs/fileindex.md"
   ],
   "commits": [
     {
       "author": "Bryan",
-      "commit": "66680cf6fbf235cf55314738ca21be2cc63897cc",
-      "date": "2026-03-28T16:52:36-07:00",
+      "commit": "027abb1222b7ecaa592a4dc2fb3ae5070cfac168",
+      "date": "2026-05-04T21:53:00-07:00",
       "files": [
         {
           "paths": [
-            "AGENTS.md"
+            "docs/agent_docs/commit_dossier.json"
           ],
           "status": "A"
         },
         {
           "paths": [
-            "CLAUDE.md"
+            "docs/agent_docs/commit_dossier.md"
+          ],
+          "status": "A"
+        },
+        {
+          "paths": [
+            "docs/agent_docs/doc_status.json"
+          ],
+          "status": "A"
+        },
+        {
+          "paths": [
+            "docs/agent_docs/running_tests.md"
+          ],
+          "status": "A"
+        },
+        {
+          "paths": [
+            "docs/architecture.md"
+          ],
+          "status": "A"
+        },
+        {
+          "paths": [
+            "docs/fileindex.md"
           ],
           "status": "A"
         }
       ],
-      "short_commit": "66680cf",
-      "subject": "docs: refresh agent instructions"
+      "short_commit": "027abb1",
+      "subject": "Sync repo docs"
     },
     {
       "author": "Bryan",
-      "commit": "033a5d4a2dc3e6fb57ad364ec21afa9263a01dab",
-      "date": "2026-03-28T17:10:24-07:00",
+      "commit": "eea2db2e94bce962ae3e970d248288f7c387f054",
+      "date": "2026-05-05T07:24:31-07:00",
       "files": [
         {
           "paths": [
-            "AGENTS.md"
+            "docs/agent_docs/agents_md_status.json"
           ],
-          "status": "M"
+          "status": "A"
         }
       ],
-      "short_commit": "033a5d4",
-      "subject": "docs: tighten agent instructions"
-    },
-    {
-      "author": "Bryan",
-      "commit": "8b2584b1ad2c3cd4a3656ee5241659463e916e1b",
-      "date": "2026-04-19T07:18:38-07:00",
-      "files": [
-        {
-          "paths": [
-            "src/input_event.rs"
-          ],
-          "status": "M"
-        }
-      ],
-      "short_commit": "8b2584b",
-      "subject": "Fix digit key mappings"
+      "short_commit": "eea2db2",
+      "subject": "Track AGENTS.md refresh status"
     }
   ],
   "docs_current_through": {
-    "commit": "63fe042375835bd052eeab8026fce339a1483cbd",
-    "date": "2026-03-07T07:14:45-08:00"
-  },
-  "from_commit": "63fe042375835bd052eeab8026fce339a1483cbd",
-  "generated_at": "2026-05-05T04:51:15+00:00",
-  "head": {
     "commit": "8b2584b1ad2c3cd4a3656ee5241659463e916e1b",
-    "date": "2026-04-19T07:18:38-07:00",
-    "short_commit": "8b2584b"
+    "date": "2026-04-19T07:18:38-07:00"
+  },
+  "from_commit": "8b2584b1ad2c3cd4a3656ee5241659463e916e1b",
+  "generated_at": "2026-05-08T09:21:59+00:00",
+  "head": {
+    "commit": "eea2db2e94bce962ae3e970d248288f7c387f054",
+    "date": "2026-05-05T07:24:31-07:00",
+    "short_commit": "eea2db2"
   },
   "mode": "delta",
   "recent_commits": [],
   "repo": "/home/bryan/code/stt/voice-keyboard-linux",
-  "to_commit": "8b2584b1ad2c3cd4a3656ee5241659463e916e1b",
+  "to_commit": "eea2db2e94bce962ae3e970d248288f7c387f054",
   "worktree_dirty": true
 }
