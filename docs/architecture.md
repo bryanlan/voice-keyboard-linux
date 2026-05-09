@@ -1,8 +1,8 @@
 ---
 doc_type: architecture
 managed_by: sync-repo-docs
-current_through_commit: eea2db2e94bce962ae3e970d248288f7c387f054
-current_through_date: 2026-05-05T07:24:31-07:00
+current_through_commit: 35e4b5f281765a144c32c411ee415f34766f9930
+current_through_date: 2026-05-08T02:22:43-07:00
 ---
 
 # Architecture
@@ -32,6 +32,16 @@ The runtime is built around a privilege split: the process starts with enough pe
 6. Flux `TurnInfo` events are converted into `TranscriptionResult` callbacks. Non-`Update` events are always logged; plain update logs are rate-limited.
 7. For transcript updates, `VirtualKeyboard` finds the common prefix with the currently typed text, backspaces only the changed suffix, and types the new suffix.
 8. On `EndOfTurn`, the keyboard finalizes the transcript. If `--voice-enter` was passed and the text ends with the standalone word `enter` plus optional punctuation/whitespace, the matched command is removed and an Enter keypress is emitted. Without `--voice-enter`, no Enter keypress is injected.
+
+## External Integrations
+
+- The launcher integrates with Linux desktop input facilities, local audio capture, and the configured speech-to-text backend.
+- Runtime behavior depends on the active launcher/process, so inspect the live process list before assuming a provider.
+
+## Key Decisions
+
+- The repo keeps keyboard-triggered voice entry small and local-first rather than embedding a larger desktop service.
+- Provider-specific behavior is intentionally kept behind launcher/proxy boundaries.
 
 ## Runtime Modes
 

@@ -1,6 +1,5 @@
 {
   "changed_paths": [
-    "docs/agent_docs/agents_md_status.json",
     "docs/agent_docs/commit_dossier.json",
     "docs/agent_docs/commit_dossier.md",
     "docs/agent_docs/doc_status.json",
@@ -11,79 +10,64 @@
   "commits": [
     {
       "author": "Bryan",
-      "commit": "027abb1222b7ecaa592a4dc2fb3ae5070cfac168",
-      "date": "2026-05-04T21:53:00-07:00",
+      "commit": "35e4b5f281765a144c32c411ee415f34766f9930",
+      "date": "2026-05-08T02:22:43-07:00",
       "files": [
         {
           "paths": [
             "docs/agent_docs/commit_dossier.json"
           ],
-          "status": "A"
+          "status": "M"
         },
         {
           "paths": [
             "docs/agent_docs/commit_dossier.md"
           ],
-          "status": "A"
+          "status": "M"
         },
         {
           "paths": [
             "docs/agent_docs/doc_status.json"
           ],
-          "status": "A"
+          "status": "M"
         },
         {
           "paths": [
             "docs/agent_docs/running_tests.md"
           ],
-          "status": "A"
+          "status": "M"
         },
         {
           "paths": [
             "docs/architecture.md"
           ],
-          "status": "A"
+          "status": "M"
         },
         {
           "paths": [
             "docs/fileindex.md"
           ],
-          "status": "A"
+          "status": "M"
         }
       ],
-      "short_commit": "027abb1",
+      "short_commit": "35e4b5f",
       "subject": "Sync repo docs"
-    },
-    {
-      "author": "Bryan",
-      "commit": "eea2db2e94bce962ae3e970d248288f7c387f054",
-      "date": "2026-05-05T07:24:31-07:00",
-      "files": [
-        {
-          "paths": [
-            "docs/agent_docs/agents_md_status.json"
-          ],
-          "status": "A"
-        }
-      ],
-      "short_commit": "eea2db2",
-      "subject": "Track AGENTS.md refresh status"
     }
   ],
   "docs_current_through": {
-    "commit": "8b2584b1ad2c3cd4a3656ee5241659463e916e1b",
-    "date": "2026-04-19T07:18:38-07:00"
-  },
-  "from_commit": "8b2584b1ad2c3cd4a3656ee5241659463e916e1b",
-  "generated_at": "2026-05-08T09:21:59+00:00",
-  "head": {
     "commit": "eea2db2e94bce962ae3e970d248288f7c387f054",
-    "date": "2026-05-05T07:24:31-07:00",
-    "short_commit": "eea2db2"
+    "date": "2026-05-05T07:24:31-07:00"
+  },
+  "from_commit": "eea2db2e94bce962ae3e970d248288f7c387f054",
+  "generated_at": "2026-05-09T09:04:21+00:00",
+  "head": {
+    "commit": "35e4b5f281765a144c32c411ee415f34766f9930",
+    "date": "2026-05-08T02:22:43-07:00",
+    "short_commit": "35e4b5f"
   },
   "mode": "delta",
   "recent_commits": [],
   "repo": "/home/bryan/code/stt/voice-keyboard-linux",
-  "to_commit": "eea2db2e94bce962ae3e970d248288f7c387f054",
+  "to_commit": "35e4b5f281765a144c32c411ee415f34766f9930",
   "worktree_dirty": true
 }
