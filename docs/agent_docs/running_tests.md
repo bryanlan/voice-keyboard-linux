@@ -1,8 +1,8 @@
 ---
 doc_type: running_tests
 managed_by: sync-repo-docs
-current_through_commit: c24cc84b62e4b84934b92dce04887c44b9ddc0af
-current_through_date: 2026-05-11T02:18:49-07:00
+current_through_commit: 8bc06f6ecb3449077ac3d9da76fa066f9b8fc749
+current_through_date: 2026-05-13T02:11:30-07:00
 ---
 
 # Running Tests
@@ -11,9 +11,10 @@ current_through_date: 2026-05-11T02:18:49-07:00
 
 - `cargo test virtual_keyboard::tests`
   - Primary hermetic check for the local product contract: incremental typing, smart backspacing, voice-enter command detection, voice-enter disabled behavior, and uppercase mode.
+  - Current result on this sync pass: passed, 22 tests.
 - `cargo test`
   - Full Rust suite. This also runs live Deepgram Flux tests from `src/stt_client.rs`, so it is not a clean offline gate unless valid credentials/network are available.
-  - Current result on this sync pass: 23 local tests passed and 2 live STT tests failed with `401 Unauthorized` / `INVALID_AUTH`.
+  - Prior sync result: 23 local tests passed and 2 live STT tests failed with `401 Unauthorized` / `INVALID_AUTH`.
 
 ## Targeted Test Patterns
 
