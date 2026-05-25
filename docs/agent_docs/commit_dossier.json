@@ -10,8 +10,8 @@
   "commits": [
     {
       "author": "Bryan",
-      "commit": "8bc06f6ecb3449077ac3d9da76fa066f9b8fc749",
-      "date": "2026-05-13T02:11:30-07:00",
+      "commit": "0a2e88dfbfa0e96d93a2eb0d5ea96eda0811eb4f",
+      "date": "2026-05-21T02:24:33-07:00",
       "files": [
         {
           "paths": [
@@ -50,24 +50,24 @@
           "status": "M"
         }
       ],
-      "short_commit": "8bc06f6",
+      "short_commit": "0a2e88d",
       "subject": "Sync repo docs"
     }
   ],
   "docs_current_through": {
-    "commit": "c24cc84b62e4b84934b92dce04887c44b9ddc0af",
-    "date": "2026-05-11T02:18:49-07:00"
-  },
-  "from_commit": "c24cc84b62e4b84934b92dce04887c44b9ddc0af",
-  "generated_at": "2026-05-21T09:23:25+00:00",
-  "head": {
     "commit": "8bc06f6ecb3449077ac3d9da76fa066f9b8fc749",
-    "date": "2026-05-13T02:11:30-07:00",
-    "short_commit": "8bc06f6"
+    "date": "2026-05-13T02:11:30-07:00"
+  },
+  "from_commit": "8bc06f6ecb3449077ac3d9da76fa066f9b8fc749",
+  "generated_at": "2026-05-25T02:00:37+00:00",
+  "head": {
+    "commit": "0a2e88dfbfa0e96d93a2eb0d5ea96eda0811eb4f",
+    "date": "2026-05-21T02:24:33-07:00",
+    "short_commit": "0a2e88d"
   },
   "mode": "delta",
   "recent_commits": [],
   "repo": "/home/bryan/code/stt/voice-keyboard-linux",
-  "to_commit": "8bc06f6ecb3449077ac3d9da76fa066f9b8fc749",
+  "to_commit": "0a2e88dfbfa0e96d93a2eb0d5ea96eda0811eb4f",
   "worktree_dirty": true
 }
