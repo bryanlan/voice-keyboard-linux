@@ -1,47 +1,30 @@
 ---
 doc_type: fileindex
 managed_by: sync-repo-docs
-current_through_commit: 0a2e88dfbfa0e96d93a2eb0d5ea96eda0811eb4f
-current_through_date: 2026-05-21T02:24:33-07:00
+current_through_commit: 8049d4516ff9a953d9690e6feb87d342d90db1d5
+current_through_date: 2026-05-24T19:02:39-07:00
 ---
 
 # File Index
-
 ## Top-Level Layout
-
-- `src/`: main Rust source for CLI orchestration, audio capture, Flux WebSocket handling, and virtual keyboard output.
-- `docs/`: managed repo docs and sync metadata.
-- `Cargo.toml` / `Cargo.lock`: crate manifest and locked dependency graph.
-- `run.sh`: local runner that builds and invokes the binary with `sudo -E`.
-- `flake.nix` / `shell.nix`: Nix development shell definitions.
-- `target/`: generated Rust build/test artifacts when present.
+- `docs/` - top-level directory in the current tree.
+- `src/` - top-level directory in the current tree.
 
 ## Key Directories
-
-- `src/`: authored runtime and unit-test code.
-- `docs/agent_docs/`: managed sync state, commit dossier, and current verification notes.
+- `docs/` - contains `docs/agent_docs/agents_md_status.json`, `docs/agent_docs/commit_dossier.json`, `docs/agent_docs/commit_dossier.md`, `docs/agent_docs/doc_status.json`, `docs/agent_docs/running_tests.md`.
+- `src/` - contains `src/audio_input.rs`, `src/input_event.rs`, `src/main.rs`, `src/stt_client.rs`, `src/virtual_keyboard.rs`.
 
 ## Key Files
-
-- `src/main.rs`: entrypoint, clap flags, privilege-drop flow, audio/STT loop, and event-to-keyboard dispatch.
-- `src/virtual_keyboard.rs`: uinput keyboard implementation, transcript diffing, voice-enter command handling, uppercase mode, and mock-backed unit tests.
-- `src/stt_client.rs`: Deepgram Flux client, `DEEPGRAM_API_KEY` auth header, server message schema, audio channel/CloseStream handling, and live STT tests.
-- `src/audio_input.rs`: CPAL input-device setup and sample conversion.
-- `src/input_event.rs`: Linux input constants, key maps, and uinput structs.
-- `README.md`: operator-facing setup and Flux contract notes; verify CLI/options against `src/main.rs` when behavior changes.
-- `AGENTS.md`: agent-facing repo guardrails and verification commands.
-- `run.sh`: recommended local execution helper from the repo root.
+- `README.md` - repository configuration, entrypoint, or operator documentation.
+- `AGENTS.md` - repository configuration, entrypoint, or operator documentation.
+- `CLAUDE.md` - repository configuration, entrypoint, or operator documentation.
+- `Cargo.toml` - repository configuration, entrypoint, or operator documentation.
+- Test anchors: `docs/agent_docs/running_tests.md`.
 
 ## Change Hotspots
-
-- `src/main.rs`, `src/stt_client.rs`, and `README.md` move together when Flux endpoint/auth/protocol assumptions change.
-- `src/main.rs`, `src/audio_input.rs`, and `run.sh` move together when privilege dropping or audio-session setup changes.
-- `src/virtual_keyboard.rs` is the main hotspot for typing behavior, transcript correction, voice-enter command detection, and uppercase mode.
-- `Cargo.toml` / `Cargo.lock` change with CPAL, Tokio, tungstenite, nix, clap, serde, or tracing dependency updates.
-- `docs/` should move when command-line modes, service assumptions, or test expectations change.
+- `src/` changes should be reviewed with adjacent tests and docs.
+- `docs/` changes should be reviewed with adjacent tests and docs.
+- When touching manifests or runtime entrypoints, update this file and `docs/architecture.md` in the same change.
 
 ## Deferred or Unclear Areas
-
-- Live-service authentication materially affects the STT tests in `src/stt_client.rs`.
-- `run.sh` prevents direct root execution, but manual runs can still bypass that guard; preserve the documented privilege model.
-- The README's option list can drift from `src/main.rs`; `--voice-enter` and `--uppercase` are source-of-truth flags in the current code.
+- This automated rollout used live manifests, README content, and tracked file layout; deeper domain semantics should be confirmed in representative source before large behavior changes.
