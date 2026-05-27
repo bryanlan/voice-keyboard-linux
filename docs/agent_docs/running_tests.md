@@ -1,25 +1,33 @@
 ---
 doc_type: running_tests
 managed_by: sync-repo-docs
-current_through_commit: 90c6ef13223d0b20945727cb5018f9479e2822ab
-current_through_date: 2026-05-25T02:03:12-07:00
+current_through_commit: 81148a33bc974a1c93f166598f028514bc6588e2
+current_through_date: 2026-05-25T08:47:50-07:00
 ---
 
 # Running Tests
 ## Primary Commands
-- No dedicated automated test command was identified from the current manifests; use focused source inspection plus any documented project-specific checks.
+- `cargo test virtual_keyboard::tests` - hermetic unit coverage for transcript update, backspacing, uppercase, digit/key mappings, and voice-enter behavior; passed on 2026-05-27 with 22 tests.
+- `cargo build` - compile the debug binary; passed on 2026-05-27.
+- `cargo test --no-run` - compile the full test binary without running live STT checks; passed on 2026-05-27.
 
 ## Targeted Test Patterns
-- Run the narrowest available package, pytest, or Playwright command for the files being changed.
+- Keyboard/keycode/transcript changes: `cargo test virtual_keyboard::tests`.
+- Broad compile check without live service execution: `cargo test --no-run`.
+- Manual audio check: `./run.sh --test-audio` only when a local microphone/audio session and `/dev/uinput` flow should be exercised.
+- Manual STT debug check: `./run.sh --debug-stt` or `./run.sh --test-stt` only when `DEEPGRAM_API_KEY`, audio input, network, and uinput permissions are intentionally in scope.
 
 ## Environment and Fixtures
-- Install dependencies using the package manager or Python environment described by the current manifests before running tests.
-- Check `.env.example`, `env.example`, README setup sections, and local service requirements before running integration checks.
-- Prefer focused unit or build checks when broad tests require external services.
+- Install Rust/Cargo plus system audio headers such as `alsa-lib-devel` or `libasound2-dev`.
+- Use `sudo -E` for manual binary runs so `DEEPGRAM_API_KEY`, `XDG_RUNTIME_DIR`, `PULSE_RUNTIME_PATH`, `DISPLAY`, and `WAYLAND_DISPLAY` survive privilege escalation.
+- `/dev/uinput` and the `uinput` kernel module are required for real keyboard output.
+- `CLAUDE.md` is a symlink to `AGENTS.md`; do not replace it during docs or guidance edits.
 
 ## Edge Cases
 - Treat deploy, restore, migration, promotion, scheduler, and production data commands as operational workflows, not tests.
-- If a broad test command needs live credentials, databases, browsers, or sibling services, document that dependency and run the smallest safe check available.
+- Live STT failures may be missing credentials, service auth, network, or Deepgram contract drift rather than Rust regressions.
+- Audio failures after `sudo` are often environment-preservation or session-access issues; verify `sudo -E` and PipeWire/PulseAudio first.
+- Do not use generated `target/` artifacts as source-of-truth documentation.
 
 ## Known Gaps
-- Commands in this file are derived from current manifests and tracked tests; if a repo-specific guide documents a stricter check, prefer the guide.
+- Default docs-sync verification does not exercise real audio, real `/dev/uinput` typing, or live Deepgram Flux responses.

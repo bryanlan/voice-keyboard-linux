@@ -1,32 +1,44 @@
 ---
 doc_type: fileindex
 managed_by: sync-repo-docs
-current_through_commit: 90c6ef13223d0b20945727cb5018f9479e2822ab
-current_through_date: 2026-05-25T02:03:12-07:00
+current_through_commit: 81148a33bc974a1c93f166598f028514bc6588e2
+current_through_date: 2026-05-25T08:47:50-07:00
 ---
 
 # File Index
 ## Top-Level Layout
-- `docs/` - repository documentation and managed doc-sync metadata.
-- `src/` - primary source code.
+- `README.md` - install, run, Deepgram Flux, troubleshooting, and architecture notes.
+- `AGENTS.md` - repo operating rules. `CLAUDE.md` is a symlink to this file.
+- `Cargo.toml` and `Cargo.lock` - Rust crate manifest and resolved dependencies.
+- `run.sh` - local runner that builds and invokes the binary with `sudo -E`.
+- `src/` - Rust source for keyboard, audio, STT, and input-event logic.
+- `target/` - generated Cargo build/test output.
+- `docs/` - managed repo-doc sync files.
 
 ## Key Directories
-- `docs/` - repository documentation and managed doc-sync metadata.
-- `src/` - primary source code.
+- `src/` - runtime source modules.
+- `docs/agent_docs/` - doc-sync status, commit dossier, and testing guidance.
+- `target/debug/` and `target/release/` - generated binaries and test artifacts.
 
 ## Key Files
-- `README.md` - key tracked file or entrypoint for this repo.
-- `AGENTS.md` - key tracked file or entrypoint for this repo.
-- `CLAUDE.md` - key tracked file or entrypoint for this repo.
+- `src/main.rs` - CLI parsing, privilege capture/drop, mode dispatch, audio/STT loop, and keyboard wiring.
+- `src/virtual_keyboard.rs` - uinput keyboard hardware implementation, transcript delta/backspace logic, uppercase mode, voice-enter handling, and unit tests.
+- `src/input_event.rs` - Linux input structs, uinput constants, keycode constants, and `char_to_keycode` mapping.
+- `src/audio_input.rs` - default input-device selection and typed sample conversion for `cpal`.
+- `src/stt_client.rs` - Deepgram Flux WebSocket client, auth header, server-message parsing, `CloseStream`, and audio buffering.
+- `run.sh` - recommended wrapper for build plus `sudo -E`.
+- `Cargo.toml` - dependencies including `cpal`, `tokio-tungstenite`, `nix`, `clap`, `serde`, `regex`, and tracing.
 
 Test and verification anchors:
-- No tracked test files were identified.
+- `virtual_keyboard::tests` in `src/virtual_keyboard.rs` - local hermetic transcript/key behavior coverage.
+- `cargo test --no-run` - compiles the full test binary without executing live STT paths.
 
 ## Change Hotspots
-- Runtime entrypoint changes should be reviewed with adjacent service, route, CLI, or frontend modules and the tests that exercise them.
-- Manifest or dependency changes should be reviewed with setup docs and `docs/agent_docs/running_tests.md`.
-- Documentation-only changes should stay scoped to managed docs unless source-of-truth operator docs are stale.
-- When recent commits rename, split, or demote modules, verify whether the old file still owns behavior or only delegates to newer modules.
+- Keyboard text behavior changes should review `virtual_keyboard.rs`, `input_event.rs`, and `cargo test virtual_keyboard::tests` together.
+- Privilege or runner changes should review `main.rs`, `run.sh`, README troubleshooting, and audio environment preservation together.
+- STT protocol changes should review `stt_client.rs`, README Flux contract notes, and live credential expectations together.
+- Audio capture changes should review `audio_input.rs`, privilege-drop sequencing, and PipeWire/PulseAudio troubleshooting.
 
 ## Deferred or Unclear Areas
-- This rollout used live manifests, README content, tracked file layout, and representative source paths. Confirm deeper domain semantics in source before large behavior changes.
+- Full live STT execution is intentionally not a default docs-sync check because it needs service credentials, audio devices, and `/dev/uinput` access.
+- README Flux details can drift with the external service; verify provider docs or live behavior before changing protocol assumptions.
