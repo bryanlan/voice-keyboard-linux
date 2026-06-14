@@ -1,15 +1,15 @@
 ---
 doc_type: running_tests
 managed_by: sync-repo-docs
-current_through_commit: 298a32192daff97a84c1015cde6b94d05dbf5871
-current_through_date: 2026-06-06T23:40:46-07:00
+current_through_commit: 583d67bb59f083f2f7a08edcc05cabbf4c5fc373
+current_through_date: 2026-06-12T23:21:22-07:00
 ---
 
 # Running Tests
 ## Primary Commands
-- `cargo test virtual_keyboard::tests` - hermetic unit coverage for transcript update, backspacing, uppercase, digit/key mappings, and voice-enter behavior; passed on 2026-05-27 with 22 tests.
-- `cargo build` - compile the debug binary; passed on 2026-05-27.
-- `cargo test --no-run` - compile the full test binary without running live STT checks; passed on 2026-05-27.
+- `cargo test virtual_keyboard::tests` - hermetic unit coverage for transcript update, backspacing, uppercase, digit/key mappings, and voice-enter behavior; passed on 2026-06-14 with 22 tests.
+- `cargo build` - compile the debug binary; passed on 2026-06-14.
+- `cargo test --no-run` - compile the full test binary without running live STT checks; passed on 2026-06-14.
 
 ## Targeted Test Patterns
 - Keyboard/keycode/transcript changes: `cargo test virtual_keyboard::tests`.
