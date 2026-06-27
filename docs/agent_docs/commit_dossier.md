@@ -1,11 +1,11 @@
 # Commit Dossier
 
 - Repository: `/home/bryan/code/stt/voice-keyboard-linux`
-- Generated at: `2026-06-25T05:50:00+00:00`
-- Repo HEAD: `58317ff4fd62955380933b71928c5a592cfb8db2` (2026-06-24T03:58:58-04:00)
+- Generated at: `2026-06-27T04:26:05+00:00`
+- Repo HEAD: `a717bb9e317f2b6457d87f36873b8d8a0626c072` (2026-06-25T01:50:17-04:00)
 - Worktree dirty: `true`
-- Docs current through: `a6ff80c459644c7ed792b1ed665e6f100b2285fd`
-- Docs current through date: `2026-06-20T22:43:13-07:00`
+- Docs current through: `58317ff4fd62955380933b71928c5a592cfb8db2`
+- Docs current through date: `2026-06-24T03:58:58-04:00`
 
 ## Changed Paths Since Docs Baseline
 
@@ -18,9 +18,9 @@
 
 ## Commits Since Docs Baseline
 
-### 58317ff Sync repo docs
+### a717bb9 Sync repo docs
 
-- Date: `2026-06-24T03:58:58-04:00`
+- Date: `2026-06-25T01:50:17-04:00`
 - Author: `Bryan`
 - Files:
   - `M` `docs/agent_docs/commit_dossier.json`
