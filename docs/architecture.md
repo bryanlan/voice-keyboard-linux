@@ -1,8 +1,8 @@
 ---
 doc_type: architecture
 managed_by: sync-repo-docs
-current_through_commit: 17fcd32384d663fd9c67f21b084146d320db2564
-current_through_date: 2026-07-01T03:14:03-04:00
+current_through_commit: 747d6d6369dfcd38987beee98eb481333cb44777
+current_through_date: 2026-07-02T00:31:54-04:00
 ---
 
 # Architecture

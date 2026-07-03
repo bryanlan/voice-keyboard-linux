@@ -1,6 +1,5 @@
 {
   "changed_paths": [
-    "docs/agent_docs/agents_md_status.json",
     "docs/agent_docs/commit_dossier.json",
     "docs/agent_docs/commit_dossier.md",
     "docs/agent_docs/doc_status.json",
@@ -11,8 +10,8 @@
   "commits": [
     {
       "author": "Bryan",
-      "commit": "6f5aea29bf477abe3efceade0a0bb194cdab2348",
-      "date": "2026-07-01T01:05:50-04:00",
+      "commit": "747d6d6369dfcd38987beee98eb481333cb44777",
+      "date": "2026-07-02T00:31:54-04:00",
       "files": [
         {
           "paths": [
@@ -51,39 +50,24 @@
           "status": "M"
         }
       ],
-      "short_commit": "6f5aea2",
+      "short_commit": "747d6d6",
       "subject": "Sync repo docs"
-    },
-    {
-      "author": "Bryan",
-      "commit": "17fcd32384d663fd9c67f21b084146d320db2564",
-      "date": "2026-07-01T03:14:03-04:00",
-      "files": [
-        {
-          "paths": [
-            "docs/agent_docs/agents_md_status.json"
-          ],
-          "status": "M"
-        }
-      ],
-      "short_commit": "17fcd32",
-      "subject": "Refresh AGENTS.md"
     }
   ],
   "docs_current_through": {
-    "commit": "df9c977eec4e0d4706f7bf6640ccf0ed1ad2faf6",
-    "date": "2026-06-28T00:49:06-04:00"
-  },
-  "from_commit": "df9c977eec4e0d4706f7bf6640ccf0ed1ad2faf6",
-  "generated_at": "2026-07-02T04:31:54+00:00",
-  "head": {
     "commit": "17fcd32384d663fd9c67f21b084146d320db2564",
-    "date": "2026-07-01T03:14:03-04:00",
-    "short_commit": "17fcd32"
+    "date": "2026-07-01T03:14:03-04:00"
+  },
+  "from_commit": "17fcd32384d663fd9c67f21b084146d320db2564",
+  "generated_at": "2026-07-03T04:47:41+00:00",
+  "head": {
+    "commit": "747d6d6369dfcd38987beee98eb481333cb44777",
+    "date": "2026-07-02T00:31:54-04:00",
+    "short_commit": "747d6d6"
   },
   "mode": "delta",
   "recent_commits": [],
   "repo": "/home/bryan/code/stt/voice-keyboard-linux",
-  "to_commit": "17fcd32384d663fd9c67f21b084146d320db2564",
+  "to_commit": "747d6d6369dfcd38987beee98eb481333cb44777",
   "worktree_dirty": true
 }
