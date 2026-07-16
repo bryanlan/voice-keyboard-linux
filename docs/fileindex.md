@@ -1,23 +1,17 @@
----
-doc_type: fileindex
-managed_by: sync-repo-docs
-current_through_commit: 7cda8e163c4f19d1dc80d7e10644486af6f5131a
-current_through_date: 2026-07-10T00:20:09-04:00
----
-
 # File Index
 ## Top-Level Layout
 - `README.md` - install, run, Deepgram Flux, troubleshooting, and architecture notes.
 - `AGENTS.md` - repo operating rules. `CLAUDE.md` is a symlink to this file.
 - `Cargo.toml` and `Cargo.lock` - Rust crate manifest and resolved dependencies.
+- `flake.nix` and `shell.nix` - optional Nix development shells for Rust and ALSA build inputs.
 - `run.sh` - local runner that builds and invokes the binary with `sudo -E`.
 - `src/` - Rust source for keyboard, audio, STT, and input-event logic.
 - `target/` - generated Cargo build/test output.
-- `docs/` - managed repo-doc sync files.
+- `docs/` - architecture, file index, and testing guidance.
 
 ## Key Directories
 - `src/` - runtime source modules.
-- `docs/agent_docs/` - doc-sync status, commit dossier, and testing guidance.
+- `docs/agent_docs/` - repo-instruction status JSON and testing guidance.
 - `target/debug/` and `target/release/` - generated binaries and test artifacts.
 
 ## Key Files
@@ -25,12 +19,14 @@ current_through_date: 2026-07-10T00:20:09-04:00
 - `src/virtual_keyboard.rs` - uinput keyboard hardware implementation, transcript delta/backspace logic, uppercase mode, voice-enter handling, and unit tests.
 - `src/input_event.rs` - Linux input structs, uinput constants, keycode constants, and `char_to_keycode` mapping.
 - `src/audio_input.rs` - default input-device selection and typed sample conversion for `cpal`.
-- `src/stt_client.rs` - Deepgram Flux WebSocket client, auth header, server-message parsing, `CloseStream`, and audio buffering.
+- `src/stt_client.rs` - Deepgram Flux WebSocket client, auth header, Flux query parameters, server-message parsing, `CloseStream`, and 16-bit PCM audio buffering.
 - `run.sh` - recommended wrapper for build plus `sudo -E`.
 - `Cargo.toml` - dependencies including `cpal`, `tokio-tungstenite`, `nix`, `clap`, `serde`, `regex`, and tracing.
 
 Test and verification anchors:
 - `virtual_keyboard::tests` in `src/virtual_keyboard.rs` - local hermetic transcript/key behavior coverage.
+- `input_event::tests` in `src/input_event.rs` - local digit-to-number-row keycode coverage.
+- `stt_client::tests` in `src/stt_client.rs` - live Deepgram/WebSocket checks that require service access and should not be treated as hermetic unit tests.
 - `cargo test --no-run` - compiles the full test binary without executing live STT paths.
 
 ## Change Hotspots

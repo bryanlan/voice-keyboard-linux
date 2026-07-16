@@ -1,18 +1,13 @@
----
-doc_type: running_tests
-managed_by: sync-repo-docs
-current_through_commit: 7cda8e163c4f19d1dc80d7e10644486af6f5131a
-current_through_date: 2026-07-10T00:20:09-04:00
----
-
 # Running Tests
 ## Primary Commands
-- `cargo test virtual_keyboard::tests` - hermetic unit coverage for transcript update, backspacing, uppercase, digit/key mappings, and voice-enter behavior; passed on 2026-06-14 with 22 tests.
-- `cargo build` - compile the debug binary; passed on 2026-06-14.
-- `cargo test --no-run` - compile the full test binary without running live STT checks; passed on 2026-06-14.
+- `cargo test virtual_keyboard::tests` - hermetic unit coverage for transcript update, backspacing, uppercase mode, and voice-enter behavior.
+- `cargo test input_event::tests` - hermetic unit coverage for digit/key mappings.
+- `cargo build` - compile the debug binary.
+- `cargo test --no-run` - compile the full test binary without running live STT checks.
 
 ## Targeted Test Patterns
 - Keyboard/keycode/transcript changes: `cargo test virtual_keyboard::tests`.
+- Input keycode mapping changes: `cargo test input_event::tests`.
 - Broad compile check without live service execution: `cargo test --no-run`.
 - Manual audio check: `./run.sh --test-audio` only when a local microphone/audio session and `/dev/uinput` flow should be exercised.
 - Manual STT debug check: `./run.sh --debug-stt` or `./run.sh --test-stt` only when `DEEPGRAM_API_KEY`, audio input, network, and uinput permissions are intentionally in scope.

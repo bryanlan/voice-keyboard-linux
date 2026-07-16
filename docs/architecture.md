@@ -1,10 +1,3 @@
----
-doc_type: architecture
-managed_by: sync-repo-docs
-current_through_commit: 7cda8e163c4f19d1dc80d7e10644486af6f5131a
-current_through_date: 2026-07-10T00:20:09-04:00
----
-
 # Architecture
 ## System Overview
 `voice-keyboard-linux` is a Rust Linux voice keyboard. It creates a virtual keyboard through `/dev/uinput`, drops from root back to the invoking user for desktop audio access, streams microphone audio to Deepgram Flux over WebSocket, and types transcript deltas into the active application.
@@ -19,18 +12,18 @@ First-class runtime surfaces:
 
 ## Main Components
 - `src/main.rs` parses `--test-audio`, `--test-stt`, `--debug-stt`, `--stt-url`, `--voice-enter`, and `--uppercase`; creates the real keyboard hardware while privileged; drops group/user privileges; then runs audio, debug STT, or typing STT mode.
-- `OriginalUser` in `main.rs` captures `SUDO_UID`, `SUDO_GID`, `HOME`, `USER`, `PULSE_RUNTIME_PATH`, `XDG_RUNTIME_DIR`, `DISPLAY`, and `WAYLAND_DISPLAY` so audio/session access survives `sudo -E` and privilege dropping.
+- `OriginalUser` in `main.rs` captures the invoking user's uid, gid, home directory, and username from `SUDO_UID`, `SUDO_GID`, `HOME`, `SUDO_USER`, and `USER`. During privilege drop, it preserves `PULSE_RUNTIME_PATH`, `XDG_RUNTIME_DIR`, `DISPLAY`, and `WAYLAND_DISPLAY` so audio/session access survives `sudo -E`.
 - `src/virtual_keyboard.rs` owns the `KeyboardHardware` abstraction, `RealKeyboardHardware` uinput implementation, transcript update logic, uppercase mode, and optional voice-enter command handling.
-- `src/input_event.rs` defines Linux input event structs/constants and character-to-keycode mappings. The current branch includes explicit digit keycode mappings.
+- `src/input_event.rs` defines Linux input event structs/constants and character-to-keycode mappings, including explicit digit keycode mappings.
 - `src/audio_input.rs` uses `cpal` to locate the default input device, normalize `f32`/`i16`/`u16` samples, and stream audio callbacks.
-- `src/stt_client.rs` connects to `wss://api.deepgram.com/v2/listen` by default, adds `Authorization: Token <DEEPGRAM_API_KEY>` when present, parses Flux `Connected`, `TurnInfo`, `Error`, and `Configuration` messages, and sends `CloseStream` after audio input closes.
+- `src/stt_client.rs` connects to `wss://api.deepgram.com/v2/listen` by default, sends `model=flux-general-en`, `sample_rate`, and `encoding=linear16` query parameters, adds `Authorization: Token <DEEPGRAM_API_KEY>` when present, parses Flux `Connected`, `TurnInfo`, `Error`, and `Configuration` messages, and sends `CloseStream` after audio input closes.
 - `run.sh` builds the crate and runs `sudo -E ./target/debug/voice-keyboard`.
 - `CLAUDE.md` is a symlink to `AGENTS.md`; do not replace it with a regular file.
 
 ## Data Flow
 The app starts as root or via `sudo -E`, creates a uinput device, enables the required key codes, writes the uinput device descriptor, and then drops to the original user. After the drop, audio capture uses the user's PipeWire/PulseAudio session through `cpal`.
 
-In STT mode, `AudioInput` sends sample buffers through an `AudioBuffer` to `SttClient`. The client sends linear16 audio frames over WebSocket to Deepgram Flux and receives `TurnInfo` updates. `VirtualKeyboard::update_transcript` compares each new transcript to the currently typed text, backspaces only the changed suffix, and types the new suffix. At end-of-turn it finalizes tracking; when `--voice-enter` is enabled, an end-of-turn transcript ending in an enter command can press Enter.
+In STT mode, `AudioInput` sends sample buffers through an `AudioBuffer` to `SttClient`. Stereo audio is averaged to mono, converted to 16-bit PCM, and emitted in 160 ms chunks. The client sends those linear16 frames over WebSocket to Deepgram Flux and receives `TurnInfo` updates. `VirtualKeyboard::update_transcript` compares each new transcript to the currently typed text, backspaces only the changed suffix, and types the new suffix. At end-of-turn it finalizes tracking; when `--voice-enter` is enabled, an end-of-turn transcript ending in an enter command can press Enter.
 
 ## External Integrations
 - Linux `/dev/uinput` is required for real keyboard output and requires elevated access.
@@ -43,7 +36,6 @@ In STT mode, `AudioInput` sends sample buffers through an `AudioBuffer` to `SttC
 - Use `sudo -E` for manual runs so audio/session and STT environment variables survive privilege escalation.
 - Keep transcript-update behavior conservative; the product contract is minimal backspacing, stable digit/key mappings, optional uppercase conversion, and optional voice-enter behavior.
 - Treat live STT checks separately from local Rust tests because failures can be credentials, network, or service-contract issues.
-- Managed docs are synchronized against the live tree and finalized to the current git `HEAD`; commit dossier files are navigation context, not source of truth.
 
 ## Operational Notes
 Use `docs/agent_docs/running_tests.md` for safe verification commands. `target/` is generated Cargo output and is not part of the authored runtime docs.
